@@ -1,0 +1,10 @@
+create (Ammighorbani)'s website:
+
+1- create a database to save note data.
+ - create databse ammighorbani;
+ - "CREATE TABLE IF NOT EXISTS note (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content LONGTEXT
+);"
+
+2- use ammighorbani.php file in jobtogo folder to create web page
