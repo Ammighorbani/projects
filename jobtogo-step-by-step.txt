@@ -1,0 +1,42 @@
+1- sudo useradd -m -s /bin/bash ammi && echo "ammi:1221" | sudo chpasswd && sudo usermod -aG sudo ammi
+
+2- sudo apt update && apt install mysql-server && apt install apache2 -y && sudo apt install apache2 php libapache2-mod-php mysql-server php-mysql -y && sudo apt install -y unzip wget && wget https://wordpress.org/latest.zip && sudo unzip latest.zip -d /var/www/html/ && sudo chown -R www-data:www-data /var/www/html/wordpress && sudo chmod -R 755 /var/www/html/wordpress && sudo systemctl restart apache2
+
+NOTE: to opening wordpress you need use this structre if you putted your wordpress file in wordpress directory (http://[yourserver-ip]/wordpress/)
+
+
+3- (create mysql database) 
+create database jobtogo;
+
+4- (create mysql user) 
+
+CREATE USER 'jobtogo'@'%' IDENTIFIED BY 'Ammighorbani12';
+
+GRANT ALL PRIVILEGES ON `jobtogo`.* TO 'jobtogo'@'%';
+
+FLUSH PRIVILEGES;
+
+5- (create mysql table)
+CREATE TABLE users_account (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    last_name TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    email VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL UNIQUE,
+    username VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    age SMALLINT NOT NULL CHECK (age BETWEEN 0 AND 9999),
+    phone_number BIGINT NOT NULL,
+    country VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+    city VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+    province VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+    home_address TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
+    postalcode BIGINT
+);
+
+6- (insert data query into users_account table)
+
+INSERT INTO users_account 
+(first_name, last_name, email, username, password, age, phone_number, country, city, province, home_address, postalcode)
+VALUES
+('Amir mahdi', 'Ghorbani', 'ammighorbani1385@gmail.com', 'Ammighorbani', 'Ammighorbani12', 18, '09363896309', 'Iran', 'Tehran', 'Tehran', 'aaaaaaa', 11111111);
+
