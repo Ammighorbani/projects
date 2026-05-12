@@ -1,0 +1,154 @@
+/* register.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 950px;
+  padding: 20px;
+}
+
+.circle-1, .circle-2 {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.circle-1 {
+  width: 250px;
+  height: 250px;
+  background: #3366ff;
+  top: -60px;
+  left: -60px;
+  filter: blur(100px);
+}
+
+.circle-2 {
+  width: 300px;
+  height: 300px;
+  background: #ff6600;
+  bottom: -80px;
+  right: -80px;
+  filter: blur(120px);
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: #1b1b1b;
+  padding: 30px 40px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  color: #fff;
+}
+
+.card .title {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.row {
+  display: grid;
+  gap: 15px;
+}
+
+.row-1 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.row-2 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.row-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.row-4 {
+  grid-template-columns: 2fr 1fr;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #121212;
+  color: #fff;
+  font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: #3366ff;
+  box-shadow: 0 0 8px rgba(51,102,255,0.5);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+button.submit {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg,#3366ff,#33ccff);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+button.submit:hover {
+  opacity: 0.9;
+}
+
+.phone-row {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-prefix {
+  width: 70px;
+  text-align: center;
+  background: #0d0d0d;
+}
+
+p {
+  font-size: 14px;
+}
