@@ -18,3 +18,4 @@ if ($conn->connect_error) {
 
 // Optional: Uncomment this for testing connection
 // echo "Connected successfully";
+?>
