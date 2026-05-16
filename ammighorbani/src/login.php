@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
 
         // Prepare statement to prevent SQL injection
-        $sql = "SELECT id, username, email, phone_number, password 
+        $sql = "SELECT id, uuid, username, email, phone_number, password 
                 FROM users_account 
                 WHERE username = ? OR email = ? OR phone_number = ? 
                 LIMIT 1";

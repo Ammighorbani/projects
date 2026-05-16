@@ -25,13 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $phone_prefix = trim($_POST['phone_prefix'] ?? ''); // like +98
     $phone_rest   = preg_replace('/\D/','', $_POST['phone_number'] ?? '');
     $phone_number = preg_replace('/\D/','', $phone_prefix . $phone_rest);
-    $country      = trim($_POST['country'] ?? '');
-    $home_address = trim($_POST['home_address'] ?? '');
-    $postalcode   = trim($_POST['postalcode'] ?? '');
+    # $country      = trim($_POST['country'] ?? '');
 
     // basic validation
     if ($first_name === '' || $last_name === '' || $email === '' || $username === '' ||
-        $password_raw === '' || $age <= 0 || $phone_rest === '' || $country === '') {
+        $password_raw === '' || $age <= 0 || $phone_rest === '') {
         $message = "⚠️ Please fill all required fields.";
     } else {
         // duplicate check
@@ -50,14 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $uuid = generate_uuid();
 
             $sql = "INSERT INTO users_account
-                (uuid,first_name,last_name,email,username,password,age,phone_number,country,home_address,postalcode)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                (uuid,first_name,last_name,email,username,password,age,phone_number,country)
+                VALUES (?,?,?,?,?,?,?,?,?)";
             if ($stmt = $conn->prepare($sql)) {
-                // types: s s s s s i s s s s s s => "sssssissssss"
+                // types: s s s s s i s s s s => "sssssisss"
                 $stmt->bind_param(
-                    "ssssssissss",
-                    $first_name, $last_name, $email, $username, $password_hashed,
-                    $age, $phone_number, $country, $home_address, $postalcode
+                    "ssssssiss",
+                    $uuid, $first_name, $last_name, $email, $username, $password_hashed,
+                    $age, $phone_number, $country
                 );
                 if ($stmt->execute()) {
                     $_SESSION['success'] = "✅ Registered successfully.";
@@ -170,9 +168,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       grid-template-columns: repeat(3, 1fr);
     } */
 
-    .row-4 {
+    /* .row-4 {
       grid-template-columns: 2fr 1fr;
-    }
+    } */
 
     label {
       display: block;
@@ -312,7 +310,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </div>
         </div> -->
 
-        <!-- Row 4 -->
+        <!-- Row 4 
         <div class="row row-4">
           <div>
             <label for="home_address">Home Address</label>
@@ -322,7 +320,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="postalcode">Postal Code</label>
             <input id="postalcode" name="postalcode" type="text">
           </div>
-        </div>
+        </div> -->
 
         <button class="submit" type="submit">Register</button>
       </form>

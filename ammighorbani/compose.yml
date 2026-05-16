@@ -21,14 +21,14 @@ services:
 
     extra_hosts:
         - "host.docker.internal:host-gateway"
-        #depends_on:
-        #  - php
+    depends_on:
+      - php
 
-        #php:
-        #  build: ./php
-        #  container_name: ammighorbani-php
-        #  volumes:
-        #    - ./src:/var/www/html
+  php:
+    build: ./php
+    container_name: ammighorbani-php
+    volumes:
+      - ./src:/var/www/html
         
   fastapi:
     build: ./python
