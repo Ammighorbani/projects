@@ -1,9 +1,9 @@
 <?php
 // Database connection settings
-$db_host = "localhost"; // Use 'localhost' if MySQL is running on the same server
-$db_username = "jobtogo";
+$db_host = "ammighorbani-mysql"; // Use 'localhost' if MySQL is running on the same server
+$db_username = "ammighorbani-messenger";
 $db_password = "Ammighorbani12";
-$db_database = "jobtogo";
+$db_database = "messenger";
 
 // Optional: Path to backups (if needed)
 $backupPath = __DIR__ . "/admin/backups/";
