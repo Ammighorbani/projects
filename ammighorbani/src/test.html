@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		    <input id="messageInput" type="text" placeholder="type here...">
+		        <button onclick="sendMessage()">Send</button>
+			    <div id="messages"></div>
+
+			        <script>
+					        // آدرس را دقیقاً همین بگذار (بدون پورت 8000، چون از nginx رد می‌شود)
+					        let ws = new WebSocket("ws://" + window.location.host + "/ws/1");
+
+					        ws.onopen = () => console.log("✅ WS Connected to: " + ws.url);
+					        
+					        ws.onmessage = (event) => {
+												            console.log("📩 Received from server:", event.data);
+												            let msgDiv = document.getElementById("messages");
+												            msgDiv.innerHTML += "<p>" + event.data + "</p>";
+												        };
+
+					        ws.onerror = (error) => console.error("❌ WS Error:", error);
+					        ws.onclose = () => console.log("⚠️ WS Closed");
+
+					        function sendMessage() {
+												            let input = document.getElementById("messageInput");
+												            console.log("🔘 Button clicked. Input value:", input.value);
+												            
+												            if (ws.readyState === WebSocket.OPEN) {
+																			                    console.log("🚀 Sending message:", input.value);
+																			                    ws.send(input.value);
+																			                    input.value = "";
+																			                } else {
+																											                console.error("🛑 Cannot send! WS is not open. State:", ws.readyState);
+																											            }
+												        }
+					    </script>
+	</body>
+</html>
+

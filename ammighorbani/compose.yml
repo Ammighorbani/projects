@@ -14,7 +14,7 @@ services:
     image: nginx:alpine
     container_name: ammighorbani-nginx
     ports:
-      - 8080:80
+      - 80:80
     volumes:
       - ./src:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
@@ -29,6 +29,19 @@ services:
         #  container_name: ammighorbani-php
         #  volumes:
         #    - ./src:/var/www/html
+        
+  fastapi:
+    build: ./python
+    container_name: ammighorbani-fastapi
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./python:/app
+    depends_on:
+      - mongodb
+      - redis
+
 
   mysql:
     image: mysql:8.0
