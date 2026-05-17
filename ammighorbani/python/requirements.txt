@@ -1,5 +1,0 @@
-fastapi
-uvicorn[standard]
-pymongo
-redis
-python-multipart
