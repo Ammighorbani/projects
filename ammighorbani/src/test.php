@@ -8,6 +8,7 @@ if (!isset($_SESSION['is_logged']) || $_SESSION['is_logged'] !== true) {
 
 $username = $_SESSION['username'];
 $uuid = $_SESSION['uuid'];
+$id = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,8 +30,10 @@ $uuid = $_SESSION['uuid'];
 
 const username = "<?php echo $username; ?>";
 const uuid = "<?php echo $uuid; ?>";
+const sender_id = "<?php echo $id; ?>";
 
-const ws = new WebSocket("ws://192.168.107.160:8000/ws/chat");
+let receiver_id = 2
+const ws = new WebSocket("ws://192.168.107.160:8000/ws/" + receiver_id);
 
 ws.onmessage = function(event) {
 	    const messages = document.getElementById("messages");
@@ -43,11 +46,13 @@ function sendMessage() {
 
 	    const input = document.getElementById("messageInput");
 	        
-	        const data = {
-		        user: username,
-				        uuid: uuid,
-					        message: input.value
-						    };
+	    const data = {
+	    	user: username,
+		uuid: uuid,
+		sender_id: sender_id,
+		receiver_id: receiver_id,
+		message: input.value
+	    };
 
 	        ws.send(JSON.stringify(data));
 
